@@ -11,8 +11,7 @@ function spver(currentVersion) {
     .parse(process.argv);
   
   let currentVersionArray = splitCurrentVersionString(currentVersion);
-  let newVersionArray = determineCommandLineOption(commander, currentVersionArray);
-  
+  let newVersionArray = applyCommandLineOption(commander, currentVersionArray);
   let newVersion = joinNewVersionArray(newVersionArray);
   console.log(newVersion) 
 }
@@ -22,7 +21,7 @@ function splitCurrentVersionString(currentVersion) {
   return currentVersionArray
 }
 
-function determineCommandLineOption(commander, currentVersionArray) {
+function applyCommandLineOption(commander, currentVersionArray) {
   let newVersionArray = [];
 
   if(commander.show) {
