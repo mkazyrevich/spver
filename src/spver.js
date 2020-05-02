@@ -3,6 +3,7 @@ const currentVersion = "2.1.4.20200312";
 function spver(currentVersion) {
   const commander = require('commander');
   commander
+    .option('-s, --show', 'show current version')
     .option('-p, --patch', 'increase patch number')
     .option('-f, --feature', 'increase feature number')
     .option('-m, --major', 'increase major number')
@@ -24,6 +25,9 @@ function splitCurrentVersionString(currentVersion) {
 function determineCommandLineOption(commander, currentVersionArray) {
   let newVersionArray = [];
 
+  if(commander.show) {
+    return currentVersionArray;
+  }
   if(commander.patch) {
     newVersionArray = increasePatch(currentVersionArray);
   }
