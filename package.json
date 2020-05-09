@@ -1,10 +1,13 @@
 {
   "name": "spver",
   "version": "1.0.0",
-  "description": "<p align=\"center\">\r   <a href=\"\" rel=\"noopener\">\r  <img width=200px height=200px src=\"https://i.imgur.com/6wj0hh6.jpg\" alt=\"Project logo\"></a>\r </p>",
+  "description": "",
   "main": "spver.js",
-  "scripts": {
+  "directories": {
     "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --require esm"
   },
   "repository": {
     "type": "git",
@@ -12,14 +15,31 @@
   },
   "author": "",
   "license": "ISC",
+  "babel": {
+    "presets": [
+      "stage-3",
+      "latest"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/mkazyrevich/spver/issues"
   },
   "homepage": "https://github.com/mkazyrevich/spver#readme",
   "dependencies": {
-    "mocha": "^7.1.1"
+    "babel": "^6.23.0",
+    "chai": "^4.2.0",
+    "jquery": "^3.4.1",
+    "commander": "^5.1.0",
+    "nodemon": "^2.0.2",
+    "npm-cli": "^0.1.0"
   },
   "devDependencies": {
-    "commander": "^5.1.0"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "esm": "^3.2.25",
+    "mocha": "^7.1.2"
   }
 }
