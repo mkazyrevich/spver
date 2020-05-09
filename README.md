@@ -58,3 +58,8 @@ node <path to spver.js> currentVersion --custom <custom version>
 or
 node <path to spver.js> currentVersion -c <custom version>
 ```
+
+8. **Run tests**
+```
+npm test
+```
