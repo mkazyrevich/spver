@@ -1,4 +1,4 @@
-let currentVersion = "2.1.4.20200312";
+let currentVersion = "2.2.4.20200312";
 
 function spverUtilite(param) {
 
@@ -29,7 +29,7 @@ function spverUtilite(param) {
     let newVersionArray = [];
 
     if(commander.show) {
-      newVersionArray = currentVersionArray;
+      newVersionArray = currentVersionArray.slice();
     }
     if(commander.patch) {
       newVersionArray = increasePatch(currentVersionArray);
@@ -47,33 +47,49 @@ function spverUtilite(param) {
     return newVersionArray
   }
 
-  function increasePatch(versionArray) {
-    versionArray[2] = +versionArray[2] + 1;
-    versionArray[3] = addCurrentDate();
-    return versionArray;
+  function increasePatch(currentVersionArray) {
+    let newVersionArray = currentVersionArray.slice();
+    newVersionArray[2] = +newVersionArray[2] + 1;
+    newVersionArray[3] = addCurrentDate();
+    return newVersionArray;
   }
 
-  function increaseFeature(versionArray) {
-    versionArray[1] = +versionArray[1] + 1;
-    versionArray[2] = +versionArray[2] + 1;
-    versionArray[3] = addCurrentDate();
-    return versionArray;
+  function increaseFeature(currentVersionArray) {
+    let newVersionArray = currentVersionArray.slice();
+    newVersionArray[1] = +newVersionArray[1] + 1;
+    newVersionArray[2] = +newVersionArray[2] + 1;
+    newVersionArray[3] = addCurrentDate();
+    return newVersionArray;
   }
 
-  function increaseMajor(versionArray) {
-    versionArray[0] = +versionArray[0] + 1;
-    versionArray[2] = +versionArray[2] + 1;
-    versionArray[3] = addCurrentDate();
-    return versionArray;
+  function increaseMajor(currentVersionArray) {
+    let newVersionArray = currentVersionArray.slice();
+    newVersionArray[0] = +newVersionArray[0] + 1;
+    newVersionArray[1] = 1;
+    newVersionArray[2] = +newVersionArray[2] + 1;
+    newVersionArray[3] = addCurrentDate();
+    return newVersionArray;
   }
 
-  function setCustomVersion(versionArray, customVersion) {
+  function setCustomVersion(currentVersionArray, customVersion) {
+    let newVersionArray = currentVersionArray.slice();
     customVersionArray = customVersion.split('.');
-    versionArray[0] = customVersionArray[0];
-    versionArray[1] = customVersionArray[1];
-    versionArray[2] = +versionArray[2] + 1;
-    versionArray[3] = addCurrentDate();
-    return versionArray;
+    newVersionArray[0] = customVersionArray[0];
+
+    if(customVersionArray[1]) {
+      newVersionArray[1] = customVersionArray[1];
+    } else {
+      newVersionArray[1] = 1;
+    }
+
+    if(customVersionArray[2]) {
+      newVersionArray[2] = customVersionArray[2];
+    } else {
+      newVersionArray[2] = +newVersionArray[2] + 1;
+    }
+
+    newVersionArray[3] = addCurrentDate();
+    return newVersionArray;
   }
 
   function addCurrentDate() {
